@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>My Collection</title>
+
+
+<body class="main-background">
+<nav th:replace="fragments/commons :: nav"></nav>
+
+
+<h1 class="mx-3 mt-3 cool-font white-text">Your Favorite Artists</h1>
+    <h6 class="mx-3 mt-3 cool-font white-text"
+        th:text="${artists.size == 1 ? artists.size() + ' Artist' : artists.size() + ' Artists'}">
+        3 Artists
+    </h6>
+
+    <div th:if="${artists.size() != 0}" id="resize-cards" class="row row-cols-1 row-cols-md-6 g-4">
+        <div th:each="a : ${artists}" th:object="${a}" class="col">
+            <a class="text-decoration-none no-select" th:href="@{/collection/artists/{id}/details(id= ${a.id})}">
+                <div class="card h-100 artist-card">
+                    <img class="artist-card-img"
+                        th:src="*{picture}" alt="...">
+                    <div class="card-body artist-body-card">
+                        <h5 class="card-title" th:text="*{name}">A$AP Rocky</h5>
+                        <p class="card-text">Artist</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div style="margin-top: 6rem" class="text-center" th:unless="${artists.size() != 0}">
+        <h1 class="d-flex justify-content-center cool-font white-text">Follow artists and they will appear here!</h1>
+        <form th:action="@{/collection/artists}" th:method="get">
+            <input class="btn colored btn-lg mt-4" type="submit" value="Go to Artists"/>
+        </form>
+    </div>
+</body>
+
+</html>

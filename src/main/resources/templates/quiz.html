@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons :: head"></head>
+<title>Quiz</title>
+<body class="main-background">
+    <nav th:replace="fragments/commons :: nav"></nav>
+
+    <div class="quiz-div">
+        <h1>Welcome to our quiz!</h1>
+        <p class="mt-2">Every question is worth 5 points. <br> Have fun! </p>
+    </div>
+
+    <hr class="quiz-hr">
+
+    <div class="no-select" id="quiz"></div>
+
+    <hr class="quiz-hr">
+
+    <div id="button-div">
+        <button id="submit">Submit Answers</button>
+    </div>
+
+    <div id="results"></div>
+
+</body>
+
+<script src="/js/quiz.js"></script>
+</html>

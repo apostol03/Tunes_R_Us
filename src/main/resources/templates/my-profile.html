@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>My Profile</title>
+
+
+<body class="main-background">
+
+<nav th:replace="fragments/commons :: nav"></nav>
+
+
+<div class="container-fluid" style="float: left;">
+    <div class="row">
+        <div class="col-4 g-1 px-5 py-5">
+            <img id="profile-pic" class="img-responsive shadow-lg"
+                 src="https://static.wixstatic.com/media/75f6cd_ec75ac4441294fc0b385b008b445d3b3~mv2.png/v1/fill/w_300,h_300,al_c,q_85,usm_0.66_1.00_0.01/default-profile.webp"
+                 alt="">
+        </div>
+
+        <div th:object="${user}" class="col-4 g-1 white-text marker" style="margin-top: 12rem;">
+            <span th:text="|*{role} &bull; Quiz points: *{quizPoints}|"></span>
+            <a class="hovered" sec:authorize="hasRole('ADMIN') || hasRole('MODERATOR')"
+               th:href="@{/status-panel}">&bull; Status Panel</a>
+            <h1 id="profile-name" th:text="|*{firstName} *{lastName}|">Apostol Yankov</h1>
+        </div>
+    </div>
+
+    <hr style="height: 2px;" class="mb-4 white-text">
+
+</div>
+
+<div>
+    <a class="favorite" th:href="@{/profile/favorite-artists}">Favorite artists</a>
+    <a class="favorite" th:href="@{/profile/favorite-songs}">Favorite songs</a>
+    <a class="favorite" th:href="@{/profile/favorite-albums}">Favorite albums</a>
+</div>
+
+</body>
+
+</html>

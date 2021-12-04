@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Register - Tunes-R-Us</title>
+
+<body>
+<nav class="navbar navbar-expand-lg py-3 sticky-top navbar-dark colored ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Tunes-R-Us</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/users/login}">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<form th:action="@{/users/register}"
+      th:method="post"
+      th:object="${userRegisterBindingModel}"
+      class="centered-class fix-footer">
+
+    <h2>Sign Up</h2>
+    <hr class="w-50">
+    <div class="form-group mb-3">
+        <input
+                th:field="*{firstName}" th:errorclass="is-invalid"
+                name="firstName"
+                type="text"
+                class="form-control w-50"
+                id="firstName"
+                placeholder="First name"/>
+        <small th:if="${#fields.hasErrors('firstName')}"
+               th:errors="*{firstName}" class="text-danger">Error message</small>
+    </div>
+    <div class="form-group mb-3">
+        <input
+                th:field="*{lastName}" th:errorclass="is-invalid"
+                type="text"
+                class="form-control w-50"
+                id="last-name"
+                placeholder="Last name">
+        <small th:if="${#fields.hasErrors('lastName')}"
+               th:errors="*{lastName}" class="text-danger"></small>
+    </div>
+    <div class="form-group mb-3">
+        <input
+                th:field="*{email}" th:errorclass="is-invalid"
+                type="email"
+                class="form-control w-50"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Email (ex: email@email.com)">
+        <small th:if="${#fields.hasErrors('email')}"
+               th:errors="*{email}" class="text-danger"></small>
+    </div>
+    <div class="form-group mb-3">
+        <input
+                th:field="*{username}" th:errorclass="is-invalid"
+                name="username"
+                type="text"
+                class="form-control w-50"
+                id="exampleInputUsername"
+                aria-describedby="usernameHelp"
+                placeholder="Username (ex: username)">
+        <small th:if="${#fields.hasErrors('username')}"
+               th:errors="*{username}" class="text-danger w-50"></small>
+    </div>
+    <div class="form-group mb-3">
+        <input
+                th:field="*{password}" th:errorclass="is-invalid"
+                type="password"
+                class="form-control w-50"
+                id="exampleInputPassword1"
+                placeholder="Password">
+        <small th:if="${#fields.hasErrors('password')}"
+               th:errors="*{password}" class="text-danger"></small>
+    </div>
+    <div class="form-group mb-3">
+        <input
+                th:field="*{confirmPassword}"
+                type="password"
+                class="form-control w-50"
+                placeholder="Repeat Password">
+        <small th:if="${passwordsMatch == false}" class="text-danger">Passwords don't match!</small>
+
+    </div>
+    <hr class="w-50">
+    <div id="emailHelp" class="form-text mb-3">Already have an account? <a th:href="@{/users/login}"
+                                                                           class="text-decoration-none">Sign in.</a>
+    </div>
+    <button type="submit" class="btn colored">Register</button>
+</form>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+</body>
+
+</html>

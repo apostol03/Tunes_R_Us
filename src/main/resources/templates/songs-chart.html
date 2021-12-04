@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Charts - Tunes-R-Us</title>
+<body class="main-background fix-footer">
+<nav th:replace="fragments/commons :: nav"></nav>
+
+<div>
+    <h1 class="white-text cool-font m-4">Top 10 Songs</h1>
+    <p class="fs-4 white-text cool-font m-4">Check out the hottest songs out now</p>
+</div>
+
+<div>
+    <div id="albums-chart-content" class="row row-cols-md-4 g-4">
+        <!-- Script inserted data with fetch -->
+    </div>
+</div>
+
+</body>
+<script src="/js/fetch.js"></script>
+</html>

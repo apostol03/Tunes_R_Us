@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Tunes-R-Us</title>
+
+<body>
+<nav th:replace="fragments/commons :: nav"></nav>
+
+<div class="background-image p-5 mb-0 bg-light no-select">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold text-light">Welcome to Tunes-R-Us</h1>
+        <p class="col-md-8 fs-4 text-light">Bringing you a unique catalog, we are here to remind people all over the
+            world
+            about the greatness of music and its remarkable creators.</p>
+        <button class="btn colored btn-lg text-light"
+                type="button"
+                onclick="location.href='/collection'">
+            Go to collection
+        </button>
+    </div>
+</div>
+
+<div id="jumbo-2" class="jumbotron jumbotron-fluid p-5 mb-0">
+    <div sec:authorize="!isAuthenticated()" class="container">
+        <h1 class="display-4 colored-text">Quizzes</h1>
+        <p class="fs-3 colored-text">
+            <a th:href="@{/users/register}" style="color: rgb(230, 18, 60)" class="text-decoration-none colored-text">
+                Sign Up
+            </a>
+            for free to add content to your own profile and access our music quizzes.
+        </p>
+    </div>
+    <div sec:authorize="isAuthenticated()" class="container cool-font">
+        <p class="fs-2 red">Random quote by a genius to inspire you</p>
+        <p id="kanye" class="fs-3 my-2"></p><span> - Mr. Kanye West</span>
+    </div>
+</div>
+
+<hr style="color: black; height: 3px">
+
+<div class="card-group card-sizing home-cards">
+    <div th:each="a : ${albums}" th:object="${a}" class="card override-card-hover override-card">
+        <a id="home-album" class="no-select" th:href="@{/collection/albums/{id}/details(id=*{id})}">
+            <img class="card-img-top"
+                 th:src="*{picture}"
+                 alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" th:text="*{name}">My Beautiful Dark Twisted Fantasy</h5>
+                <p class="card-text" th:text="*{artist}">Kanye West</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+</body>
+<script src="/js/kanye.js"></script>
+</html>

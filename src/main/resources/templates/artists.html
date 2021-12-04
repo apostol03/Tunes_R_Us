@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Artists - Tunes-R-Us</title>
+
+<body id="artists-bg" >
+
+<nav th:replace="fragments/commons :: nav"></nav>
+<div class="container-fluid fix-footer">
+    <div class="row no-gutters">
+
+        <div class="col-sm">
+
+            <h1 class="mt-2">
+                <span class="cool-font white-text">
+                    <a class="text-decoration-none text-reset" th:href="@{/collection/artists}">
+                        Artists
+                    </a>
+                </span>
+            </h1>
+
+            <hr style="height: 5px;" class="white-text">
+
+            <form class="search-field mt-3" th:href="@{/collection/artists}">
+                <input
+                        th:value="${query}"
+                        type="text"
+                        placeholder="Search.."
+                        name="query">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+            <hr style="height: 5px;" class="white-text">
+
+        </div>
+
+        <div id="no-artists" class="col-sm-8 mt-3">
+            <ul th:each="a : ${artists}" th:object="${a}" class="list-group list-group-flush">
+                <a class="text-decoration-none mt-1 no-select" th:href="@{/collection/artists/{id}/details(id = *{id})}">
+                    <li class="list-group-item shadow p-3 mb-1 bg-body rounded border" th:text="*{name}">
+                    </li>
+                </a>
+            </ul>
+
+            <div th:if="${!hasQuery}" class="mt-4 white-text cool-font paginated">
+                Page [[${currentPage}]] of [[${totalPages}]]
+                 - &nbsp;
+                <a class="paginated-text" th:if="${currentPage > 1}"
+                   th:href="@{'/collection/artists/page/' + ${currentPage - 1}}">&#8678;&nbsp;</a>
+                <span th:unless="${currentPage > 1}">&#8678;&nbsp;</span>
+
+                <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+                    <a class="paginated-text" th:if="${i != currentPage}" th:href="@{'/collection/artists/page/' + ${i}}">[[${i}]]&nbsp;</a>
+                    <span style="color: gray" th:unless="${i != currentPage}">[[${i}]]&nbsp;</span>
+                </span>
+
+                <a class="paginated-text" th:if="${currentPage < totalPages}"
+                   th:href="@{'/collection/artists/page/' + ${currentPage + 1}}">&#8680;&nbsp;</a>
+                <span th:unless="${currentPage < totalPages}">&#8680;&nbsp;</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--<footer th:replace="fragments/commons :: footer">-->
+<!--</footer>-->
+
+<footer class="py-3 mt-3">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a th:href="@{/}" class="nav-link px-2 text-light">Home</a></li>
+        <li class="nav-item"><a th:href="@{/collection}" class="nav-link px-2 text-light">Catalog</a></li>
+        <li class="nav-item"><a th:href="@{/quiz}" class="nav-link px-2 text-light">Quiz</a></li>
+        <li class="nav-item"><a th:href="@{/about}" class="nav-link px-2 text-light">About</a></li>
+    </ul>
+    <p class="text-center text-light ">&copy; 2021 Tunes-R-Us, Ltd</p>
+</footer>
+
+</body>
+
+<script src="/js/artists.js"></script>
+</html>

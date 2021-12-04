@@ -1,0 +1,15 @@
+.chart-h3 {
+    color: white;
+    font-family: monospace;
+    margin: 2rem;
+    /*border-bottom: 1px solid white;*/
+    /*width: 50%;*/
+}
+
+#kanye {
+    font-style: italic;
+}
+
+.red {
+    color: rgb(230, 18, 60);
+}

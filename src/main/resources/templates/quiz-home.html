@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons :: head"></head>
+<title>Quizzes</title>
+<body class="main-background">
+<nav th:replace="fragments/commons :: nav"></nav>
+
+
+<div class="quiz-div cool-font">
+    <h1>Welcome to our quiz page!</h1>
+    <p>Explore our collection of quizzes, answer questions and earn points!</p>
+</div>
+
+<hr class="quiz-hr">
+
+<div class="row">
+    <div class="col marker">
+        <a href="/quiz/1">
+            <div class="quiz-number">
+                <h4>Hip Hop Quiz</h4>
+            </div>
+        </a>
+
+        <a href="/quiz/2">
+            <div class="quiz-number">
+                <h4>R&B Quiz</h4>
+            </div>
+        </a>
+
+        <a href="/quiz/3">
+            <div class="quiz-number">
+                <h4>Metal Quiz</h4>
+            </div>
+        </a>
+    </div>
+
+    <div class="col marker">
+        <a href="/quiz/4">
+            <div class="quiz-number">
+                <h4>EDM Quiz</h4>
+            </div>
+        </a>
+
+        <a href="/quiz/5">
+            <div class="quiz-number">
+                <h4>Rock Quiz</h4>
+            </div>
+        </a>
+
+        <a href="/quiz/6">
+            <div class="quiz-number">
+                <h4>Jazz Quiz</h4>
+            </div>
+        </a>
+    </div>
+</div>
+<hr class="quiz-hr">
+
+<footer th:replace="fragments/commons :: footer"></footer>
+</body>
+</html>

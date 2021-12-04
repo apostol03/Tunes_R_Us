@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Album - Tunes-R-Us</title>
+
+<body class="main-background">
+
+<nav th:replace="fragments/commons :: nav"></nav>
+
+<div class="container-fluid">
+    <div th:object="${album}" class="row justify-content-start">
+        <div class="col-4 g-1 px-5 py-5">
+            <img class="img-responsive shadow-lg"
+                 th:src="*{picture}" alt="">
+        </div>
+
+        <div class="col-4 g-1 white-text " style="margin-top: 14rem;">
+            <h1 class="white-text" th:text="*{name}">More Life</h1>
+            <h6><a class="hover-artist text-white"
+                   th:href="@{/collection/artists/{id}/details(id = *{artist.id})}"
+                   th:text="*{artist.name}">Drake</a>
+                <span class="text-muted"
+                      th:text="|&bull; *{yearReleased} &bull; *{songsCount} songs &bull; *{genre}|">
+                </span>
+            </h6>
+            <form class="favorite-form mb-4" sec:authorize="isAuthenticated()"
+                  th:action="@{/collection/albums/{id}/details(id = *{id})}"
+                  th:method="post">
+                <button th:unless="${isContained}" type="submit" class="white-text button-outline">
+                    <i id="like-album" class="bi bi-heart"></i>
+                </button>
+                <button th:if="${isContained}" type="submit" class="white-text button-outline">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h6 class="text-muted favorite-h1" style="margin-left: 5.3rem;">Title</h6>
+
+    <hr style="height: 2px;" class="white-text">
+
+    <div class="col">
+        <ul class="list-group list-group-numbered text-white" style="margin-left:5rem">
+            <li th:each="s : ${songs}" th:object="${s}" class="mt-4">
+                <span th:text="*{name}"></span>
+                <form class="favorite-form"
+                      sec:authorize="isAuthenticated()"
+                      th:method="post"
+                      th:action="@{/collection/albums/{id}/details/{songId}(id = *{albumId}, songId = *{id})}">
+                    <button type="submit" class="white-text button-outline">
+                        <i class="bi bi-heart"></i>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <hr style="height: 2px;" class="white-text mt-4">
+
+</div>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+</body>
+
+<script src="/js/changeClass.js"></script>
+</html>

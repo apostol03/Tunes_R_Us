@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>My Collection</title>
+
+
+<body class="main-background">
+<nav th:replace="fragments/commons :: nav"></nav>
+
+
+<h1 class="mx-3 mt-3 cool-font white-text">Your Favorite Albums</h1>
+    <h6 class="mx-3 mt-3 cool-font white-text"
+        th:text="${albums.size == 1 ? albums.size() + ' Album' : albums.size() + ' Albums'}">
+        8 Albums
+    </h6>
+
+
+    <div th:if="${albums.size() != 0}" id="resize-cards" class="row row-cols-1 row-cols-md-6 g-4">
+        <div th:each="a : ${albums}" th:object="${a}" class="col">
+            <a class="text-decoration-none" th:href="@{/collection/albums/{id}/details(id = *{id})}">
+                <div class="card h-100 bordered">
+                    <img th:src="*{picture}" alt="...">
+                    <div class="card-body card-body-edited">
+                        <h5 class="card-title" th:text="*{name}">Testing</h5>
+                        <p class="card-text" th:text="|*{artist} &bull; *{yearReleased}|">
+                            A$AP Rocky &bull; 2018
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div th:unless="${albums.size() != 0}" style="margin-top: 6rem" class="text-center">
+        <h1 class="d-flex justify-content-center cool-font white-text">Find the albums you like and they will appear here!</h1>
+        <form th:action="@{/collection/albums}" th:method="get">
+            <input class="btn colored btn-lg mt-4" type="submit" value="Go to Albums"/>
+        </form>
+    </div>
+</body>
+
+</html>

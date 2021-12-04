@@ -1,0 +1,32 @@
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        username: root
+        password: 1234
+        url: "jdbc:mysql://localhost:3306/tunes_r_us?createDatabaseIfNotExist=true"
+#    sql:
+#        init:
+#            mode: always
+    jpa:
+        hibernate:
+            ddl-auto: update
+        open-in-view: false
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
+                format_sql: true
+        defer-datasource-initialization: true
+
+    mvc:
+        hiddenmethod:
+            filter:
+                enabled: true
+logging:
+    level:
+        blog: WARN
+        org: WARN
+        org.hibernate.SQL: DEBUG
+server:
+    port: 8080
+    error:
+        include-stacktrace: always

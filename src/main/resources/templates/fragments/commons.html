@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
+<!--    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/search.css"/>
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="stylesheet" href="/css/chart.css">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+<nav th:fragment="nav" class="navbar navbar-expand-lg py-3 sticky-top colored navbar-dark ">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Tunes-R-Us</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/collection}">Collection</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">About</a>
+                </li>
+                <li class="nav-item"
+                    sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/quiz}">Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/charts}">Charts</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a id="profile-button" class="nav-link" th:href="@{/profile}">
+                        <span sec:authentication="name"></span>
+                    </a>
+                </li>
+                <li class="nav-item white-border" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/users/logout}" th:method="post">
+                        <input id="logout-btn" class="btn btn-link btn-link" type="submit" th:href="@{/users/logout}" value="Logout">
+                    </form>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" th:href="@{/users/login}">Login</a>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" th:href="@{/users/register}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<footer th:fragment="footer" class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a th:href="@{/}" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a th:href="@{/collection}" class="nav-link px-2 text-muted">Catalog</a></li>
+        <li class="nav-item" sec:authorize="isAuthenticated()"><a th:href="@{/quiz}" class="nav-link px-2 text-muted">Quiz</a></li>
+        <li class="nav-item"><a th:href="@{/about}" class="nav-link px-2 text-muted">About</a></li>
+    </ul>
+    <p class="text-center text-muted">&copy; 2021 Tunes-R-Us, Ltd</p>
+</footer>
+</body>
+
+</html>

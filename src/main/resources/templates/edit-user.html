@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons :: head"></head>
+<title>Edit User</title>
+<body class="main-background">
+<nav th:replace="fragments/commons :: nav"></nav>
+
+<div th:object="${user}">
+    <h1 class="m-4 white-text" th:text="|User: *{username}| + ' | ' + |ID: *{id}|"></h1>
+    <hr class="white-text">
+</div>
+
+<div class="white-text mt-1" th:each="r : ${roles}" th:object="${r}">
+    <h3 class="m-4">Roles:</h3>
+    <ul class="m-4 list-group">
+        <li style="font-size: 25px; list-style-type: none" class=""
+            th:each="r : ${T(com.yankovltd.tunes.model.entity.enums.UserRoleEnum).values()}"
+            th:value="${r}" th:text="${r}">
+        </li>
+            <input class="btn btn-secondary btn-sm" type="submit" value="Make">
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+#quiz {
+    background-color: rgb(32, 27, 27);
+    color: white;
+    padding: 0 10px 10px 40px;
+}
+
+.radio-div {
+    padding: 10px;
+}
+
+.radio-btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+#submit, #back, #try-again {
+    margin-top: 10px;
+    margin-left: 40px;
+    color: white;
+    background-color: rgb(230, 18, 60);
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#results {
+    color: white;
+    padding: 40px;
+}
+
+.question {
+    background-color: rgb(230, 18, 60);
+    padding: 10px;
+    border-radius: 5px;
+    /*width: 60%;*/
+}

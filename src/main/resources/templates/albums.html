@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Albums - Tunes-R-Us</title>
+
+
+<body class="main-background">
+
+<nav th:replace="fragments/commons :: nav"></nav>
+
+
+<div class="row">
+    <div class="ml-0 col-sm">
+
+        <h1 class="mx-3 mt-3">
+            <span class="cool-font white-text">
+                <a class="text-decoration-none text-reset" th:href="@{/collection/albums}">
+                    Browse Albums
+                </a>
+            </span>
+        </h1>
+        <div class="mx-3 mt-3 dropdown">
+            <span class="fs-5 white-text cool-font">Sort By:</span>
+            <button class="mx-2 btn btn-secondary dropdown-toggle" type="button"
+                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+                    th:text="${sortBy}">
+            </button>
+            <ul name="sortBy" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <a class="dropdown-item"
+                       th:href="@{'/collection/albums/page/' + ${currentPage} + '?sortBy=Name'}">
+                        Name
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{'/collection/albums/page/' + ${currentPage} + '?sortBy=Name(Desc)'}"
+                       class="dropdown-item">
+                        Name(Desc)
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item"
+                       th:href="@{'/collection/albums/page/' + ${currentPage} + '?sortBy=Artist'}">
+                        Artist
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item"
+                       th:href="@{'/collection/albums/page/' + ${currentPage} + '?sortBy=Artist(Desc)'}">
+                        Artist(Desc)
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item"
+                       th:href="@{'/collection/albums/page/' + ${currentPage} + '?sortBy=Year'}">
+                        Year
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item"
+                       th:href="@{'/collection/albums/page/' + ${currentPage} + '?sortBy=Year(Desc)'}">
+                        Year(Desc)
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="col-sm">
+
+        <hr style="height: 5px;" class="white-text">
+
+        <form class="search-field mt-3" th:action="@{/collection/albums}">
+            <input
+                    th:value="${query}"
+                    type="text"
+                    placeholder="Search.."
+                    name="query">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+
+        <hr style="height: 5px;" class="white-text">
+
+    </div>
+
+</div>
+
+
+<div id="no-albums" class="row row-cols-1 row-cols-md-6 g-4 ">
+    <div th:each="a : ${albums}" th:object="${a}" class="col">
+        <a class="text-decoration-none no-select" th:href="@{/collection/albums/{id}/details(id = *{id})}">
+            <div class="card h-100 bordered">
+                <img th:src="*{picture}" alt="...">
+                <div class="card-body card-body-edited">
+                    <h5 class="card-title text-truncate" th:text="*{name}">Testing</h5>
+                    <p class="card-text" th:text="|*{artist} &bull; *{yearReleased}|">A$AP Rocky &bull; 2018</p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div th:if="${!hasQuery}" class="mt-4 white-text cool-font paginated-albums">
+        Page [[${currentPage}]] of [[${totalPages}]]
+         - &nbsp;
+
+        <a class="paginated-text-albums" th:if="${currentPage > 1}"
+           th:href="@{'/collection/albums/page/' + ${currentPage - 1} + '?sortBy=' + ${sortBy}}">&#8678;&nbsp;&nbsp;</a>
+        <span class="paginated-text-albums" th:unless="${currentPage > 1}">&#8678;&nbsp;&nbsp;</span>
+
+
+        <span class="paginated-text-albums" th:each="i : ${#numbers.sequence(1, totalPages)}">
+                    <a class="paginated-text-albums" th:if="${i != currentPage}"
+                       th:href="@{'/collection/albums/page/' + ${i}  + '?sortBy=' + ${sortBy}}">[[${i}]]&nbsp;&nbsp;</a>
+                    <span style="color: gray" th:unless="${i != currentPage}">[[${i}]]&nbsp;&nbsp;</span>
+                </span>
+
+        <a class="paginated-text-albums" th:if="${currentPage < totalPages}"
+           th:href="@{'/collection/albums/page/' + ${currentPage + 1} + '?sortBy=' + ${sortBy}}">&#8680;&nbsp;</a>
+        <span th:unless="${currentPage < totalPages}">&#8680;&nbsp;</span>
+    </div>
+
+</div>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+</body>
+
+<script src="/js/albums.js"></script>
+
+</html>

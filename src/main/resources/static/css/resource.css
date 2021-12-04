@@ -1,0 +1,12 @@
+.background {
+    margin: 10rem auto auto;
+    width: 70%;
+    padding: 70px 0;
+    border: 3px solid black;
+    text-align: center;
+    background-color: white;
+}
+
+.body {
+    background-color: rgb(32, 27, 27);
+}

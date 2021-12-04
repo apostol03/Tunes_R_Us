@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Collection - Tunes-R-Us</title>
+
+
+<body>
+
+<nav th:replace="fragments/commons :: nav"></nav>
+
+<div class="bg bg-dark">
+    <a class="text-decoration-none" th:href="@{/collection/artists}">
+        <div id="left-half">
+            <div class="neo-align text-dark hovered">
+                ARTISTS
+            </div>
+        </div>
+    </a>
+
+    <a class="text-decoration-none" th:href="@{/collection/albums}">
+        <div id="right-half">
+            <div class="neo-align text-dark hovered">
+                ALBUMS
+            </div>
+        </div>
+    </a>
+
+</div>
+</body>
+
+</html>

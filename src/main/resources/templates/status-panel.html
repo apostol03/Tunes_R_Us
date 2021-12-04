@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons :: head"></head>
+<title>Status Panel</title>
+
+<body class="main-background">
+
+<nav th:replace="fragments/commons :: nav"></nav>
+
+<div style="display: inline-block;">
+    <h1 class="white-text cool-font m-4">Status Panel</h1>
+</div>
+
+<div style="display: inline-block;">
+    <a id="stats-btn" th:href="@{/status-panel/stats}">Check live stats</a>
+</div>
+
+<div class="m-4">
+    <div class="admin-div mb-2" th:each="u : ${users}" th:object="${u}">
+        <p class="fs-5 m-3" th:text="|Username: *{username}|"></p>
+        <span class="admin-span" th:text="|Current Role: *{role}|"></span>
+        <ul class="admin-ul">
+            <th:block th:if="${currentId} != *{id}" sec:authorize="hasRole('ADMIN')">
+                <form th:action="@{/edit/{userId}(userId = *{id})}" th:method="patch">
+                    <label class="admin-label" for="select-role">
+                        <select name="select-role" id="select-role">
+                            <option th:each="r : ${T(com.yankovltd.tunes.model.entity.enums.UserRoleEnum).values()}"
+                                    th:value="${r}"
+                                    th:text="${r}"
+                                    th:selected="${r} == *{role}">
+                            </option>
+                        </select>
+                    </label>
+                    <input class="btn btn-secondary mx-2 my-2" type="submit" value="Save"/>
+                </form>
+                <li class="admin-li">
+                    <form th:action="@{/delete/{id}(id = *{id})}" th:method="delete">
+                        <input type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                               class="btn btn-secondary" value="Delete">
+                    </form>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Charts - Tunes-R-Us</title>
+<body class="main-background fix-footer">
+<nav th:replace="fragments/commons :: nav"></nav>
+
+<div>
+    <h1 class="white-text cool-font m-4">Charts</h1>
+    <p class="fs-4 white-text cool-font m-4">See live previews of the global charts</p>
+</div>
+
+<div class="row">
+    <div class="col marker">
+        <div style="width: 25%; margin: 1rem" class="quiz-number">
+            <a th:href="@{/charts/artists-chart}">
+                <h4>Top 10 Artists</h4>
+            </a>
+        </div>
+
+        <div style="width: 25%; margin: 1rem" class="quiz-number">
+            <a th:href="@{/charts/songs-chart}">
+                <h4>Top 10 Songs</h4>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

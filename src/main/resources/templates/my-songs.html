@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>My Collection</title>
+
+
+<body class="main-background">
+
+<nav th:replace="fragments/commons :: nav"></nav>
+
+<h1 class="mx-3 mt-3 cool-font white-text">Your Favorite Songs</h1>
+<h6 class="mx-3 mt-3 mb-5 cool-font white-text"
+    th:text="${songs.size == 1 ? songs.size() + ' Song' : songs.size() + ' Songs'}">10 Songs
+</h6>
+
+    <div th:if="${songs.size() != 0}" class="row">
+        <div class="col">
+            <h6 class="text-muted" style="margin-left: 5.3rem;">Title</h6>
+            <hr style="height: 2px; margin-bottom: 0" class="white-text">
+            <ol class="list-group list-group-numbered text-white" style="margin-left:5rem">
+                <li th:each="s : ${songs}" th:object="${s}" class="mt-4">
+                    <span th:text="*{name}"></span>
+                    <form class="favorite-form"
+                          th:action="@{/profile/favorite-songs/{id}(id = *{id})}"
+                          th:method="delete">
+                        <button type="submit" class="white-text button-outline">
+                            <i class="bi bi-heart-fill"></i>
+                        </button>
+                    </form>
+                </li>
+            </ol>
+            <hr style="height: 2px;" class="white-text mt-4">
+        </div>
+
+        <div class="col">
+            <h6 class="text-muted" style="margin-left: 2rem;">Album</h6>
+            <hr style="height: 2px;" class="white-text">
+            <ul class="text-muted" style="list-style: none;">
+                <li style="padding: 0.44rem 0.75rem" th:each="s : ${songs}" th:object="${s}" class="mt-4">
+                  <span>
+                    <a th:href="@{/collection/albums/{id}/details(id = *{album.id})}"
+                       class="text-muted hover-artist" th:text="*{album.name}">More Life</a>
+                  </span>
+                </li>
+            </ul>
+            <hr style="height: 2px;" class="white-text mt-4">
+        </div>
+    </div>
+
+    <div th:unless="${songs.size() != 0}" style="margin-top: 6rem" class="text-center">
+        <h1 class="d-flex justify-content-center cool-font white-text">Find the songs you like and they will appear here!</h1>
+        <form th:action="@{/collection/albums}" th:method="get">
+            <input class="btn colored btn-lg mt-4" type="submit" value="Go to Albums"/>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Artist - Tunes-R-Us</title>
+
+
+<body class="main-background">
+
+<nav th:replace="fragments/commons :: nav"></nav>
+
+
+<!-- https://wwd.com/wp-content/uploads/2018/06/asap-rocky.jpg -->
+<!-- https://ichef.bbci.co.uk/news/976/cpsprodpb/8EE4/production/_119808563_aaliyah.jpg -->
+
+<div>
+    <div th:object="${artist}" class="my-container no-select">
+        <img class="artist-img" th:src="*{artistPicture}" alt="Artist">
+        <div class="bottom-left">
+            <h1 class="white-text" style="font-size: 5rem;" th:text="*{name}">A$AP Rocky</h1>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h1 class="mx-4 my-3 white-text cool-font favorite-h1">Discography</h1>
+            <form class="favorite-form" sec:authorize="isAuthenticated()"
+                  th:action="@{/collection/artists/{id}/details(id = *{id})}"
+                  th:method="post">
+                <button th:unless="${isFollowed}" type="submit" class=" follow-btn">Follow</button>
+                <button th:if="${isFollowed}" type="submit" class=" follow-btn">Unfollow</button>
+            </form>
+        </div>
+        <div id="resize-cards" class="mx-3 row row-cols-1 row-cols-sm-6 my-3">
+            <div th:each="a : ${albums}" th:object="${a}" class="col mb-3">
+                <a class="text-decoration-none no-select"
+                   th:href="@{/collection/albums/{id}/details(id = *{id})}">
+                    <div class="card h-100 bordered">
+                        <img th:src="*{picture}" alt="...">
+                        <div class="card-body card-body-edited">
+                            <h5 class="card-title text-truncate" th:text="*{name}">Testing</h5>
+                            <p class="card-text" th:text="|*{yearReleased} &bull; Album|"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h1 class="mx-4 my-3 white-text cool-font">About</h1>
+        <div th:object="${artist}" class="container justify-content-start no-select">
+            <div class="card override-card-hover bg-dark text-white">
+                <img id="description-img"
+                     th:src="*{bioPicture}"
+                     class="card-img artist-img" alt="...">
+                <div class="card-img-overlay">
+                    <p class="card-text" th:text="*{bio}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/commons :: footer"></footer>
+
+</body>
+
+<script type="text/javascript" src="/js/script.js"></script>
+
+</html>

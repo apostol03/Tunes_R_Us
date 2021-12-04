@@ -1,0 +1,473 @@
+.background-image {
+    background-image: url('/images/bg-img.jpg');
+    background-size: cover;
+}
+
+.centered-class {
+    margin-top: 1cm;
+    margin-left: 3cm;
+    margin-right: 5cm;
+    width: 80%;
+}
+
+.spaced {
+    margin-left: 1cm;
+}
+
+.card-sizing {
+    margin-left: 0.2cm;
+    margin-right: 0.2cm;
+}
+
+
+.colored {
+    background-color: rgb(230, 18, 60);
+    color: white;
+}
+
+.about-img {
+    background-image: url('/images/kanye-sunday.jpg');
+    background-size: cover;
+}
+
+.full-size {
+    height: 72vh;
+}
+
+.colored-text {
+    color: black;
+    /* color: rgb(230, 18, 60); */
+    background-size: cover;
+}
+
+#left-half {
+    background: url('/images/artists-png.jpg');
+    background-size: cover;
+    filter: brightness(0.8);
+    left: 0;
+    width: 50%;
+    position: absolute;
+    height: 88%;
+    cursor: pointer;
+}
+
+#left-half:hover {
+    filter: brightness(0.6);
+    transition: .15s ease-in-out;
+}
+
+#right-half {
+    background: url('/images/albums-img.jpg');
+    background-size: cover;
+    filter: brightness(0.8);
+    right: 0;
+    width: 50%;
+    position: absolute;
+    height: 88%;
+    cursor: pointer;
+}
+
+#right-half:hover {
+    filter: brightness(0.6);
+    transition: .15s ease-in-out;
+}
+
+.neo-align {
+    color: white;
+    font-size: 14mm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30%;
+}
+
+.hovered:hover {
+    opacity: 0.7;
+}
+
+.bg-color-collection {
+    background-color: lightgray;
+}
+
+#artist-list {
+    background-color: darkgray;
+}
+
+#sort-btn {
+    font-size: 14px;
+}
+
+.list-group-flush {
+    border-width: 5mm;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#artists-bg {
+    /*background: url('https://magnetmagazine.com/wp-content/uploads/2018/08/unspecified-5.jpeg');*/
+    background: url('https://media1.fdncms.com/orlando/imager/u/original/26410568/maroon5.jpeg');
+    background-size: cover;
+}
+
+.white-text {
+    color: white;
+    text-shadow: 0.3px 0.3px;
+}
+
+.cool-font {
+    font-family: monospace;
+}
+
+.list-group .text-decoration-none:hover {
+    background-color: gray;
+    border-radius: 0.25rem;
+}
+
+.artist-img {
+    /* background: center; */
+    width: 1280px;
+    height: 400px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: 25% 15%;
+    filter: brightness(70%);
+}
+
+.my-container {
+    position: relative;
+    text-align: center;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 50px;
+    left: 16px;
+    font-size: 15mm;
+}
+
+.row {
+    margin: auto;
+}
+
+.main-background {
+    background: #201b1b;
+    /* filter: brightness(70%); */
+    /* rgb(196, 37, 37); */
+}
+
+.bordered {
+    border: 8px solid black;
+    border-radius: .25rem;
+}
+
+
+.card-body-edited {
+    background-color: #201b1b;
+    color: white;
+}
+
+.card {
+    background-color: rgb(32, 27, 27);
+}
+
+.card:hover {
+    filter: brightness(70%);
+    transform: scale(1.02);
+}
+
+.override-card {
+    background-color: white;
+    margin: 5mm;
+}
+
+.override-card-hover:hover {
+    filter: brightness(100%);
+    transform: none;
+}
+
+.hover-artist {
+    text-decoration: none;
+}
+
+.hover-artist:hover {
+    text-decoration: underline;
+}
+
+#profile-pic {
+    float: right;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+}
+
+#profile-name {
+    float: left;
+    font-size: 55px;
+    font-weight: 700;
+}
+
+/* .quiz-points {
+    margin-top: 0.5rem;
+    font-size: 14px;
+} */
+
+.favorite {
+    margin-left: 9rem;
+    margin-right: 9rem;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.favorite:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.artist-card {
+    background-color: black;
+}
+
+.artist-card-img {
+    border-radius: 50%;
+}
+
+.artist-body-card {
+    background-color: black;
+    color: white;
+}
+
+#profile-button, #logout-btn {
+    color: white;
+    text-decoration: none;
+}
+
+#profile-button:hover, #logout-btn:hover {
+    opacity: 0.6;
+    transition: .15s ease-in-out;
+}
+
+.white-border {
+    border-left: 2px solid white;
+}
+
+.paginated {
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    text-align: center;
+    width: 50%;
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.paginated-text {
+    text-decoration: none;
+    color: black;
+}
+
+.paginated-text:hover {
+    opacity: 0.6;
+    color: black;
+}
+
+.fix-footer {
+    min-height: 80vh;
+}
+
+.paginated-albums {
+    font-size: 22px;
+    padding: 10px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+}
+
+.paginated-text-albums {
+    text-decoration: none;
+    color: white;
+}
+
+.paginated-text-albums:hover {
+    opacity: 0.6;
+    color: white;
+}
+
+#home-album {
+    text-decoration: none;
+    color: black;
+}
+
+#home-album:hover {
+    filter: brightness(70%);
+    transition: .15s ease-in-out;
+}
+
+.home-cards {
+    width: 75rem;
+    margin: auto;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.follow-btn {
+    display: flex;
+    justify-content: end;
+    text-align: end;
+    margin-top: 20px;
+    float: right;
+    color: white;
+    background-color: rgb(230, 18, 60);
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    vertical-align: middle;
+    padding: 0.375rem 0.75rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.follow-btn:hover {
+    color: black;
+}
+
+.favorite-h1 {
+    display: inline-block;
+    width: 80%;
+}
+
+.favorite-form {
+    display: inline-block;
+    align-items: end;
+    align-content: end;
+    width: 10%;
+}
+
+.admin-div {
+    padding: 1px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-span {
+    margin: 28px 2px;
+    width: 25%;
+    text-align: center;
+}
+
+.admin-label {
+    margin-top: 0.5rem;
+}
+
+.admin-ul {
+    display: flex;
+    justify-content: end;
+    vertical-align: top;
+    margin: 1rem 1rem;
+    /*margin-right: 40px;*/
+}
+
+.admin-li {
+    margin: 0.5rem 0.5rem;
+    list-style-type: none;
+}
+
+.admin-buttons {
+    margin: 5rem 5rem;
+    float: right;
+}
+
+.quiz-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem;
+    margin: auto;
+    color: white;
+}
+
+.quiz-hr {
+    margin-top: 0;
+    color: white;
+    height: 2px;
+}
+
+.quiz-number {
+    color: white;
+    font-family: monospace;
+    margin: 80px 180px;
+    text-align: center;
+    background-color: rgb(230, 18, 60);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 5px 5px 5px;
+    width: 40%;
+}
+
+.quiz-number:hover {
+    background-color: rgb(212, 11, 51);
+    color: #c8c3c3;
+}
+
+.marker a {
+    text-decoration: none;
+    color: white;
+}
+
+#like-album {
+    color: white;
+}
+
+.song-link {
+    text-decoration: none;
+    color: white;
+}
+
+.song-link:hover {
+    text-decoration: underline;
+    color: darkgray;
+}
+
+.button-outline {
+    outline: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    padding: 0.375rem 0.75rem;
+}
+
+.button-outline:focus {
+    outline: none;
+}
+
+.button-outline:hover {
+    opacity: 0.6;
+}
+
+#stats-btn {
+    float: right;
+    text-decoration: underline;
+    color: white;
+}
+
+#stats-btn:hover {
+    color: darkgray;
+    transition: .25s ease-in-out;
+}

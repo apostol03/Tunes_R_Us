@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons :: head"></head>
+<title>Stats</title>
+
+<body class="main-background">
+
+<nav th:replace="fragments/commons :: nav"></nav>
+    <div class="container m-5 white-text">
+        <h4 th:text="|Album visits for the day: ${albumVisits}|"></h4>
+        <hr class="mt-4 mb-4">
+        <h4 th:text="|Artist visits for the day: ${artistVisits}|"></h4>
+    </div>
+</body>
+</html>
