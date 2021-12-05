@@ -4,12 +4,12 @@ spring:
         username: root
         password: 1234
         url: "jdbc:mysql://localhost:3306/tunes_r_us?createDatabaseIfNotExist=true"
-#    sql:
-#        init:
-#            mode: always
+    sql:
+        init:
+            mode: always
     jpa:
         hibernate:
-            ddl-auto: update
+            ddl-auto: create
         open-in-view: false
         properties:
             hibernate:

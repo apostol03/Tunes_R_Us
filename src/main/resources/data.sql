@@ -1,6 +1,5 @@
-# USE tunes_r_us;
 
-# ARTISTS
+-- ARTISTS
 INSERT INTO artists(id, bio, name)
 VALUES (1, 'One of hip hop\'s true mavericks, ASAP Rocky is renowned for his experimental approach to music, his flair for fashion,
 his penchant for psychedelic drugs and his prolific love life (former girlfriends include Kendall Jenner and Iggy Azalea).
@@ -90,7 +89,7 @@ some premier opulent magazines. Tiësto has been nominated for Grammys and he is
 record holder, thanks to his unique approach towardselectronic dance music. He is the founder of the music label,
 ‘Black Hole Recordings’, which has gifted music lovers some amazing tracks and albums.', 'Tiësto');
 
-# PICTURES
+-- PICTURES
 INSERT INTO pictures(id, image_url, name, artist_id)
 VALUES (1, 'https://wwd.com/wp-content/uploads/2018/06/asap-rocky.jpg', 'A$AP Rocky', 1);
 INSERT INTO pictures(id, image_url, name, artist_id)
@@ -145,7 +144,7 @@ VALUES (19, 'https://ichef.bbci.co.uk/news/976/cpsprodpb/8EE4/production/_119808
         'Aaliyah', 7),
        (21, 'https://i.kfs.io/artist/global/3910,0v4/fit/300x300.jpg', 'Aaliyah', 7);
 
-# Album pictures
+-- Album pictures
 INSERT INTO pictures(id, image_url, name, artist_id)
 VALUES (22, 'https://upload.wikimedia.org/wikipedia/en/9/93/Long-live-asap.jpg', 'LONG.LIVE.A$AP', 1),
        (23, 'https://upload.wikimedia.org/wikipedia/en/a/ab/AtLongLastASAPCover.jpg', 'AT.LONG.LAST.A$AP', 1),
@@ -421,7 +420,7 @@ VALUES (1, 'HIP_HOP', 'LONG.LIVE.A$AP', 2013, 1, 22),
 
 
 
-# asap rocky
+-- asap rocky
 INSERT INTO songs(name, album_id, artist_id)
 VALUES ('Long Live A$AP', 1, 1),
        ('Goldie', 1, 1),
@@ -471,7 +470,7 @@ VALUES ('Long Live A$AP', 1, 1),
        ('Black Tux, White Collar', 3, 1),
        ('Purity (Ft. Frank Ocean)', 3, 1);
 
-# drake
+-- drake
 INSERT INTO songs(name, album_id, artist_id)
 VALUES ('Fireworks (Ft. Alicia Keys)', 4, 2),
        ('Karaoke', 4, 2),
@@ -878,7 +877,7 @@ VALUES ('Intro', 15, 3),
        ('Junya pt 2 (Ft. Playboi Carti & Ty Dolla $ign)', 26, 3),
        ('Jesus Lord pt 2 (Ft. Jay Electronica & The LOX)', 26, 3);
 
-# kendrick lamar
+-- kendrick lamar
 INSERT INTO songs(name, album_id, artist_id)
 VALUES ('Growing Apart (To Get Closer) (Ft. Jhené Aiko)', 27, 4),
        ('Night of the Living Junkies', 27, 4),
@@ -965,7 +964,7 @@ VALUES ('Growing Apart (To Get Closer) (Ft. Jhené Aiko)', 27, 4),
        ('GOD.', 32, 4),
        ('DUCKWORTH.', 32, 4);
 
-# schoolboy q
+-- schoolboy q
 INSERT INTO songs(name, album_id, artist_id)
 VALUES ('Figg Get da Money', 33, 5),
        ('Kamikaze', 33, 5),
@@ -1051,7 +1050,7 @@ VALUES ('Figg Get da Money', 33, 5),
        ('Water (Ft. Lil Baby)', 37, 5),
        ('Attention', 37, 5);
 
-# travis scott
+-- travis scott
 INSERT INTO songs(name, album_id, artist_id)
 VALUES ('Pornography', 38, 6),
        ('Oh My Dis Side (Ft. Quavo)', 38, 6),
@@ -1126,7 +1125,7 @@ VALUES ('Pornography', 38, 6),
        ('WHAT TO DO? (Ft. Don Toliver)', 42, 6),
        ('GATTI (Ft. Pop Smoke)', 42, 6);
 
-# aaliyah
+-- aaliyah
 INSERT INTO songs(name, album_id, artist_id)
 VALUES ('Intro', 43, 7),
        ('Throw Your Hands Up', 43, 7),
