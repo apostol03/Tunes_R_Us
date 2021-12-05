@@ -15,8 +15,8 @@
 }
 
 .card-sizing {
-    margin-left: 0.2cm;
-    margin-right: 0.2cm;
+    /*margin-left: 0.2cm;*/
+    /*margin-right: 0.2cm;*/
 }
 
 
@@ -26,12 +26,14 @@
 }
 
 .about-img {
-    background-image: url('/images/kanye-sunday.jpg');
+    background-image: url("/images/kanye-about.jpg");
+    /*background-image: url('/images/kanye-sunday.jpg');*/
     background-size: cover;
+    position: relative;
 }
 
 .full-size {
-    height: 72vh;
+    /*height: 72vh;*/
 }
 
 .colored-text {
@@ -317,11 +319,6 @@
 #home-album:hover {
     filter: brightness(70%);
     transition: .15s ease-in-out;
-}
-
-.home-cards {
-    width: 75rem;
-    margin: auto;
 }
 
 .no-select {

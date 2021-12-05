@@ -40,7 +40,7 @@
 
 <hr style="color: black; height: 3px">
 
-<div class="card-group card-sizing home-cards">
+<div class="card-group card-sizing">
     <div th:each="a : ${albums}" th:object="${a}" class="card override-card-hover override-card">
         <a id="home-album" class="no-select" th:href="@{/collection/albums/{id}/details(id=*{id})}">
             <img class="card-img-top"
