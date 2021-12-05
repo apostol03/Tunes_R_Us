@@ -2,15 +2,14 @@ package com.yankovltd.tunes.service.impl;
 
 import com.yankovltd.tunes.model.entity.*;
 import com.yankovltd.tunes.model.entity.enums.UserRoleEnum;
+import com.yankovltd.tunes.model.service.UserProfilePictureServiceModel;
 import com.yankovltd.tunes.model.service.UserRegisterServiceModel;
 import com.yankovltd.tunes.model.view.UserPanelViewModel;
 import com.yankovltd.tunes.model.view.UserProfileViewModel;
 import com.yankovltd.tunes.repository.*;
-import com.yankovltd.tunes.service.FollowedArtistService;
-import com.yankovltd.tunes.service.LikedAlbumService;
-import com.yankovltd.tunes.service.LikedSongService;
-import com.yankovltd.tunes.service.UserService;
+import com.yankovltd.tunes.service.*;
 import com.yankovltd.tunes.web.exception.ResourceNotFoundException;
+import com.yankovltd.tunes.web.exception.UserNotFoundException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,13 +17,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -38,8 +33,9 @@ public class UserServiceImpl implements UserService {
     private final LikedAlbumService likedAlbumService;
     private final LikedSongService likedSongService;
     private final FollowedArtistService followedArtistService;
+    private final CloudinaryService cloudinaryService;
 
-    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder, AppUserServiceImpl appUserService, LikedAlbumService likedAlbumService, LikedSongService likedSongService, FollowedArtistService followedArtistService) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder, AppUserServiceImpl appUserService, LikedAlbumService likedAlbumService, LikedSongService likedSongService, FollowedArtistService followedArtistService, CloudinaryService cloudinaryService) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.passwordEncoder = passwordEncoder;
@@ -47,6 +43,7 @@ public class UserServiceImpl implements UserService {
         this.likedAlbumService = likedAlbumService;
         this.likedSongService = likedSongService;
         this.followedArtistService = followedArtistService;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
@@ -83,6 +80,7 @@ public class UserServiceImpl implements UserService {
                     .setPassword(passwordEncoder.encode("admin"))
                     .setEmail("apostol@mail.bg")
                     .setUsername("apostol")
+                    .setImageUrl(null)
                     .setRoles(List.of(userRole, moderatorRole, adminRole));
 
             userRepository.save(admin);
@@ -102,6 +100,7 @@ public class UserServiceImpl implements UserService {
                 .setFirstName(userServiceModel.getFirstName())
                 .setLastName(userServiceModel.getLastName())
                 .setPassword(passwordEncoder.encode(userServiceModel.getPassword()))
+                .setImageUrl(null)
                 .setRoles(List.of(userRole));
 
         newUser = userRepository.save(newUser);
@@ -152,7 +151,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmailIgnoreCase(email).isEmpty();
     }
 
-
     // PROFILE METHOD
     @Transactional
     @Override
@@ -167,12 +165,27 @@ public class UserServiceImpl implements UserService {
 
                     String role = setCorrectRole(user);
 
+                    userProfileViewModel.setImageUrl(user.getImageUrl());
                     userProfileViewModel.setRole(role);
                     userProfileViewModel.setQuizPoints(0);
                     return userProfileViewModel;
                 })
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
+    }
+
+    @Override
+    public void uploadProfilePicture(UserProfilePictureServiceModel userProfilePictureServiceModel) {
+        UserEntity userEntity = userRepository
+                .findByUsername(userProfilePictureServiceModel.getUsername())
+                .orElseThrow(() -> new UserNotFoundException("User not found (" + userProfilePictureServiceModel.getUsername() + ")"));
+        try {
+            String imageUrl = cloudinaryService.uploadProfilePicture(userProfilePictureServiceModel.getPicture());
+            userEntity.setImageUrl(imageUrl);
+            userRepository.save(userEntity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

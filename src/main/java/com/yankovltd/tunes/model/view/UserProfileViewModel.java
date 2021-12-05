@@ -5,6 +5,7 @@ public class UserProfileViewModel {
     private String role;
     private String firstName;
     private String lastName;
+    private String imageUrl;
     private int quizPoints;
 
     public UserProfileViewModel() {
@@ -52,6 +53,15 @@ public class UserProfileViewModel {
 
     public UserProfileViewModel setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public UserProfileViewModel setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 }

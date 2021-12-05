@@ -1,5 +1,7 @@
 package com.yankovltd.tunes.web;
 
+import com.yankovltd.tunes.model.binding.UserProfilePictureBindingModel;
+import com.yankovltd.tunes.model.service.UserProfilePictureServiceModel;
 import com.yankovltd.tunes.model.view.AlbumViewModel;
 import com.yankovltd.tunes.model.view.ArtistFavoriteViewModel;
 import com.yankovltd.tunes.model.view.SongFavoriteViewModel;
@@ -11,10 +13,7 @@ import com.yankovltd.tunes.service.impl.AppUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,9 +34,24 @@ public class MyProfileController {
 
     @GetMapping("/profile")
     public String showProfile(@AuthenticationPrincipal AppUser appUser, Model model) {
+        if (!model.containsAttribute("userProfilePictureBindingModel")) {
+            model.addAttribute("userProfilePictureBindingModel",
+                    new UserProfilePictureBindingModel());
+        }
         model.addAttribute("user",
                 userService.findByUsername(appUser.getUsername()));
         return "my-profile";
+    }
+
+    @PatchMapping("/profile/upload")
+    public String uploadProfilePicture(UserProfilePictureBindingModel userProfilePictureBindingModel,
+                                       @AuthenticationPrincipal AppUser appUser) {
+        UserProfilePictureServiceModel userProfilePictureServiceModel =
+                new UserProfilePictureServiceModel();
+        userProfilePictureServiceModel.setPicture(userProfilePictureBindingModel.getPicture())
+                .setUsername(appUser.getUsername());
+        userService.uploadProfilePicture(userProfilePictureServiceModel);
+        return "redirect:/profile";
     }
 
     @GetMapping("/profile/favorite-artists")

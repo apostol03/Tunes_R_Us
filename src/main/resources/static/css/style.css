@@ -41,8 +41,9 @@
 }
 
 #left-half {
-    background: url('/images/artists-png.jpg');
+    background-image: url('/images/artists-png.jpg');
     background-size: cover;
+    display: block;
     filter: brightness(0.8);
     left: 0;
     width: 50%;
@@ -57,8 +58,9 @@
 }
 
 #right-half {
-    background: url('/images/albums-img.jpg');
+    background-image: url('/images/albums-img.jpg');
     background-size: cover;
+    display: block;
     filter: brightness(0.8);
     right: 0;
     width: 50%;
@@ -198,30 +200,36 @@
     text-decoration: underline;
 }
 
-#profile-pic {
-    float: right;
+.profile-pic {
+    float: left;
     height: 300px;
     width: 300px;
     border-radius: 50%;
 }
 
 #profile-name {
-    float: left;
+    /*float: left;*/
     font-size: 55px;
     font-weight: 700;
 }
 
-/* .quiz-points {
-    margin-top: 0.5rem;
-    font-size: 14px;
-} */
+.profile-label {
+    color: white;
+    background-color: rgb(230, 18, 60);
+    margin-top: 1.2rem;
+    margin-left: 1.2rem;
+    padding: 0.2rem;
+    border-radius: 0.4rem;
+}
 
 .favorite {
-    margin-left: 9rem;
-    margin-right: 9rem;
+    margin-left: 14rem;
+    margin-bottom: 2rem;
     font-size: 20px;
     text-decoration: none;
     color: white;
+    display: inline-block;
+    align-content: center;
 }
 
 .favorite:hover {

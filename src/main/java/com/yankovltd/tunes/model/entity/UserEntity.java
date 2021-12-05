@@ -19,6 +19,7 @@ public class UserEntity extends BaseEntity {
     private String email;
     private String username;
     private String password;
+    private String imageUrl;
     private List<UserRole> roles;
 
     public UserEntity() {
@@ -74,6 +75,15 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public UserEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+
     @ManyToMany(fetch = FetchType.LAZY)
     public List<UserRole> getRoles() {
         return roles;
@@ -83,4 +93,5 @@ public class UserEntity extends BaseEntity {
         this.roles = roles;
         return this;
     }
+
 }

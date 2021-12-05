@@ -5,13 +5,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.HSQLDialect
   datasource:
     url: jdbc:hsqldb:mem:testdb;sql.syntax_pgs=true
-#    driver-class-name: org.hsqldb.jdbc.JDBCDriver
-#    username: sa
-#    password:
+cloudinary:
+  api-key: 235212454292485
+  api-secret: ${CLOUDINARY_API_SECRET}
+  cloud-name: tunes-r-us
 
 

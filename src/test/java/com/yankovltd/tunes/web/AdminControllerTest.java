@@ -83,7 +83,6 @@ class AdminControllerTest {
     @AfterEach
     void tearDown() {
         userRepository.deleteAll();
-        userRoleRepository.deleteAll();
     }
 
     @Test

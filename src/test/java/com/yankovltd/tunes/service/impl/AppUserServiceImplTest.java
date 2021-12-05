@@ -47,6 +47,7 @@ class AppUserServiceImplTest {
         testUser.setUsername("gosho")
                 .setEmail("gosho@mail.bg")
                 .setPassword("1234")
+                .setImageUrl(null)
                 .setRoles(List.of(adminRole, moderatorRole, userRole));
     }
 

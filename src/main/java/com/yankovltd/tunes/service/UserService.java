@@ -1,5 +1,6 @@
 package com.yankovltd.tunes.service;
 
+import com.yankovltd.tunes.model.service.UserProfilePictureServiceModel;
 import com.yankovltd.tunes.model.service.UserRegisterServiceModel;
 import com.yankovltd.tunes.model.view.UserPanelViewModel;
 import com.yankovltd.tunes.model.view.UserProfileViewModel;
@@ -25,4 +26,6 @@ public interface UserService {
     boolean isEmailFree(String email);
 
     void updateUserRole(Long userId, String role);
+
+    void uploadProfilePicture(UserProfilePictureServiceModel userProfilePictureServiceModel);
 }

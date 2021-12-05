@@ -4,19 +4,22 @@ spring:
         username: root
         password: 1234
         url: "jdbc:mysql://localhost:3306/tunes_r_us?createDatabaseIfNotExist=true"
-    sql:
-        init:
-            mode: always
+#    sql:
+#        init:
+#            mode: always
     jpa:
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
         open-in-view: false
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL8Dialect
                 format_sql: true
         defer-datasource-initialization: true
-
+    servlet:
+      multipart:
+          max-file-size: 3MB
+          max-request-size: 3MB
     mvc:
         hiddenmethod:
             filter:
@@ -30,3 +33,8 @@ server:
     port: 8080
     error:
         include-stacktrace: always
+
+cloudinary:
+    api-key: 235212454292485
+    api-secret: ${CLOUDINARY_API_SECRET}
+    cloud-name: tunes-r-us
